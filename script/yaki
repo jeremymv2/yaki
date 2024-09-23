@@ -342,7 +342,7 @@ do_kube_setup() {
 do_kube_init() {
     do_kube_setup
     info "Initializing node as control-plane"
-    init_cluster
+    # init_cluster
 }
 
 do_kube_join() {
