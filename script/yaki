@@ -190,7 +190,7 @@ install_containerd() {
     systemctl daemon-reload && systemctl enable --now containerd && systemctl restart containerd
 }
 
-# Install crictl
+# Install crictl and nerdctl
 install_crictl() {
     info "installing crictl"
     wget -qO- --progress=bar "https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRICTL_VERSION}/crictl-${CRICTL_VERSION}-linux-${ARCH}.tar.gz" | tar -C "${BIN_DIR}" -xz
@@ -200,6 +200,9 @@ runtime-endpoint: unix:///var/run/containerd/containerd.sock
 image-endpoint: unix:///var/run/containerd/containerd.sock
 timeout: 10
 EOF
+    info "crictl installed successfully"
+    curl -sL https://github.com/containerd/nerdctl/releases/download/v1.7.7/nerdctl-1.7.7-linux-amd64.tar.gz | tar xz -C /usr/local/bin
+    info "nerdctl installed successfully"
 }
 
 # Install Kubernetes binaries
